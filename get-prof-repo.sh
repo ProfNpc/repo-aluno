@@ -15,7 +15,12 @@ echo $alunorepourl
 
 #Renomeia o branch main
 git switch main
-git branch -m old-main
+
+numoldmain=`git branch | grep old-main | wc -l`
+nomebranch=`echo old-main${numoldmain}`
+
+
+git branch -m ${nomebranch}
 
 #Cria um novo branch main(local) a partir de profrepo
 git checkout --orphan main
@@ -40,6 +45,6 @@ git remote remove prof-origin
 git push --force origin main
 
 
-git branch -D old-main
+#git branch -D old-main
 
 
